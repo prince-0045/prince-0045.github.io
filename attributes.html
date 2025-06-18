@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attribute Analysis - Database Normalization Tools</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-database-fill"></i> Normify
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="minimal-cover.html">Minimal Cover</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="normal-form.html">Normal Form</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="attributes.html">Attributes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="fd-comparison.html">FD Comparison</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container mt-4">
+  <div class="info-box d-flex align-items-start p-3 rounded border" role="alert">
+    <i class="bi bi-info-circle-fill me-3 fs-4 text-primary"></i>
+    <div>
+      <strong>Redundant FDs:</strong> If you enter <code>A, B → C</code> and <code>A, B → D</code> separately,<br>
+      these should be <strong>combined</strong> into a single FD like <code>A, B → C, D</code> for clarity.
+    </div>
+  </div>
+
+<style>
+  .info-box {
+    background-color: rgba(121, 173, 228, 0.1); /* Light transparent blue */
+    border-color: rgba(0, 123, 255, 0.2);
+  }
+</style>
+
+
+  <!-- Correct Format Display -->
+  <div class="fd-box d-inline-flex align-items-center px-4 py-2 rounded-3 shadow-sm border bg-blue">
+    <span class="lhs fw-semibold text-dark">A, B</span>
+    <span class="mx-2 text-primary fs-5 fw-bold">→</span>
+    <span class="rhs fw-semibold text-dark">C, D</span>
+  </div>
+</div>
+
+<!-- Optional Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+  .fd-box:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.03);
+    transition: all 0.2s ease-in-out;
+  }
+</style>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title mb-4">Attribute Analysis</h2>
+                        
+                        <form id="attributeForm">
+                            <div class="mb-4">
+                                <label for="attributes" class="form-label">Attributes (comma-separated)</label>
+                                <input type="text" class="form-control" id="attributes" 
+                                    placeholder="e.g., student_id, name, course, grade">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="functionalDependencies" class="form-label">Functional Dependencies (one per line)</label>
+                                <textarea class="form-control" id="functionalDependencies" rows="5" 
+                                    placeholder="e.g., student_id -> name, course&#10;course -> grade"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-calculator me-2"></i>Analyze Attributes
+                            </button>
+                        </form>
+
+                        <div id="results" class="mt-4" style="display: none;">
+                            <h3 class="h5 mb-3">Results</h3>
+                            
+                            <div class="result-box">
+                                <h4 class="h6 mb-2">Candidate Keys:</h4>
+                                <div id="candidateKeys" class="result-content"></div>
+                            </div>
+                            
+                            <div class="result-box">
+                                <h4 class="h6 mb-2">Superkeys:</h4>
+                                <div id="superkeys" class="result-content"></div>
+                            </div>
+
+                            <div class="result-box">
+                                <h4 class="h6 mb-2">Prime Attributes:</h4>
+                                <div id="primeAttributes" class="result-content"></div>
+                            </div>
+
+                            <div class="result-box">
+                                <h4 class="h6 mb-2">Non-Prime Attributes:</h4>
+                                <div id="nonPrimeAttributes" class="result-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Attribute Analysis Script -->
+    <script src="attributes.js"></script>
+</body>
+</html> 

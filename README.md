@@ -53,16 +53,4 @@ dbms_project/
 
 - **HTML5**
 - **CSS3**
-- **JavaScript (Vanilla)**
-
-## 🖼️ Screenshots
-
-*You can add screenshots by uploading image files and using the following syntax:*
-
-```markdown
-![Screenshot](images/screenshot1.png)
-```
-
----
-
-Feel free to edit this file as per your project enhancements.
+- **JavaScript**
